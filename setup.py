@@ -1,14 +1,14 @@
 from setuptools import setup
 
-setup(name='vimsetup',
+setup(name='viminit',
       version='0.1',
       description='Set up a vimlang plugin project directory.',
-      url='http://github.com/vmchale/vimsetup',
+      url='http://github.com/vmchale/viminit',
       author='Vanessa McHale',
       author_email='tmchale@wisc.edu',
       license='BSD3',
-      packages=['vimsetup'],
-      scripts=['bin/vimsetup'],
+      packages=['viminit'],
+      scripts=['bin/viminit'],
       install_requires=[
           'gitpython',
       ],

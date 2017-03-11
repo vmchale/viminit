@@ -1,0 +1,55 @@
+#!/usr/bin/env python
+import git
+import vimsetup as v
+import sys
+import os
+
+args = v.parser()
+
+dir_name = args.name + "-vim"
+name = args.name
+# Create the directory
+if not os.path.exists(dir_name):
+    os.makedirs(dir_name)
+else:
+    print("Directory already exists. Aborting.")
+    sys.exit()
+
+# Create the license file
+
+if args.type == "plugin":
+    v.plugin(dir_name, name)
+elif args.type == "syntax":
+    v.syntax(dir_name, name)
+elif args.type == "colors":
+    v.colors(dir_name, name)
+elif args.type == "ftplugin":
+    v.ft_plugin(dir_name, name)
+else:
+    print("Unknown project type. Aborting")
+    sys.exit()
+
+if args.autoload:
+    v.autoload(dir_name, name)
+
+# Create the gitignore file
+f = open(dir_name + "/.gitignore", 'w+')
+print("*.vmb", file=f)
+f.close
+
+# Create the readme file
+f = open(dir_name + "/README.md", 'w+')
+print("# " + name + " vim plugin", file=f)
+f.close()
+
+# Create vimball.txt listing all the files in the repo
+contents = os.listdir(dir_name)
+f = open(dir_name + "/vimball.txt", 'w+')
+for line in contents:
+    f.write("%s\n" % line)
+f.close()
+
+# Initialize git repo
+g = git.cmd.Git(dir_name)
+g.init()
+g.add('*')
