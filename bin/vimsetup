@@ -1,0 +1,33 @@
+#!/usr/bin/env python
+import argparse
+import git
+import vimsetup as v
+import sys
+import os
+
+args = v.parser()
+
+## Create the directory
+if not os.path.exists(args.name):
+    os.makedirs(args.name)
+else:
+    print("Directory already exists. Aborting.")
+    sys.exit()
+
+
+## Create the license file
+
+## Create the gitignore file
+print("*.vmb", args.name + "/.gitignore")
+
+if args.type == "plugin":
+    v.plugin(args.name)
+
+## Create the readme file
+
+## Create vimball.txt listing all the files for the 
+
+## Initialize git repo
+g = git.cmd.Git(args.name)
+g.init()
+#git.add('*')
