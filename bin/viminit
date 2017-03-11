@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 import git
-import vimsetup as v
+import viminit as v
 import sys
 import os
 
