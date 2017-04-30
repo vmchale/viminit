@@ -12,6 +12,8 @@ def parser():
             help='License to use, e.g. BSD3, MIT, GPL, etc.', default='BDS3')
     parser.add_argument('-a', dest='autoload', action="store_true", default=False, 
             help='Whether to make a dir for autoload')
+    parser.add_argument('--syntastic', dest='autoload', action="store_true", default=False, 
+            help='make files/folders for syntastic')
     return parser.parse_args()
 
 
@@ -23,7 +25,7 @@ def subdir(base, name):
 # Create documentation if necessary
 def docs(basedir, name):
     subdir(basedir, "docs")
-    f = open(basedir + "/docs/" + name + ".txt", 'w+')
+    f = open(basedir + "/doc/" + name + ".txt", 'w+')
 
 
 def autload(basedir, name):
@@ -45,6 +47,9 @@ def syntax(basedir, name):
     subdir(basedir, "syntax")
     f = open(basedir + "/syntax/" + name + ".vim", 'w+')
 
+# TODO make this fully working
+def syntastic(base, basedir, name):
+    subdir(basedir, "syntax_checkers")
 
 def ft_plugin(basedir, name):
     docs(basedir)
